@@ -35,7 +35,7 @@ CanvasDrawLineCommand: Responsible for Drawing a line in the canvas
 CanvasQuitCommand: Responsible for quit the program
 
 Upon getting the canvas command CanvasCommandManager calls executeCommandAndDrawGrid of CanvasCommand.  it updates the grid (a 2D char array) with char 'x' and then draw the grid.
-<<use>> 
+
                                CanvasApp
                                     |
                                     |
@@ -56,10 +56,13 @@ Upon getting the canvas command CanvasCommandManager calls executeCommandAndDraw
    |                              |                      |                     |
    |                              |                      |                     |
 CanvasCreateCommand   CanvasDrawLineCommand CanvasDrawRectangleCommand   CanvasQuitCommand
-
-
-
-
+                                  |                     |
+                                  |                     |
+                                  |_____________________|
+                                              |         
+                                              | <<use>> 
+                                              V
+                                           CommonUtil
 
 
 

@@ -20,7 +20,8 @@ Java -jar target/draw-canvas-0.0.1-SNAPSHOT.jar
 
 Application will start running.
 
-=== 2. Logical Flow === 
+=== 2. Logical Flow ===
+
 The main method of the application is the main method in "CanvasApp.java" class from 
 the package "com.db.hasim.canvas". 
 When it starts it create instance of CanvasCommandManager and starts drawing the canvas.
@@ -50,7 +51,8 @@ Upon getting the canvas command CanvasCommandManager calls executeCommandAndDraw
                |                                |
                V                                V
            CanvasCommand              CanvasCommandFactory
-                 ^                             
+                 ^ 
+                 |
                  |<<extends>>                 
    ______________|______________________________________________________________
    |                              |                      |                     |

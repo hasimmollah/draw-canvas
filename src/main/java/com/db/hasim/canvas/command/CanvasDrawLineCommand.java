@@ -1,5 +1,9 @@
 package com.db.hasim.canvas.command;
 
+import java.util.Arrays;
+
+import org.apache.log4j.Logger;
+
 import com.db.hasim.canvas.CommonUtil;
 /**
  * Class to handle draw line command functionality
@@ -7,6 +11,7 @@ import com.db.hasim.canvas.CommonUtil;
  *
  */
 public class CanvasDrawLineCommand extends CanvasCommand {
+	static final Logger logger = Logger.getLogger(CanvasDrawLineCommand.class);
 	private int x1;
 	private int x2;
 	private int y1;
@@ -21,6 +26,7 @@ public class CanvasDrawLineCommand extends CanvasCommand {
 
 	@Override
 	public char[][] executeCommand(char[][] grid) {
+		logger.debug("Started --> Grid " + Arrays.deepToString(grid));
 
 		if (grid == null) {
 			throw new RuntimeException("No active grid. Please create grid using the CREATE (C) command");
@@ -32,7 +38,9 @@ public class CanvasDrawLineCommand extends CanvasCommand {
 			throw new RuntimeException("Line coordinates do not fit into the canvas");
 		}
 
-		return CommonUtil.drawLine(x1, y1, x2, y2, grid);
+		char[][] gridToReturn  = CommonUtil.drawLine(x1, y1, x2, y2, grid);
+		logger.debug("<-- Finished");
+		return gridToReturn;
 	}
 
 }

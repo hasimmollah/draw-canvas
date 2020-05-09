@@ -12,6 +12,8 @@ import static com.db.hasim.canvas.CommonConstants.RECT_CMD_REG_EXP_STR;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.log4j.Logger;
+
 /**
  * Factory class to get instance of various canvas command as per input
  * 
@@ -19,7 +21,7 @@ import java.util.regex.Pattern;
  *
  */
 public class CanvasCommandFactory {
-
+	static final Logger logger = Logger.getLogger(CanvasCommandFactory.class);
 	/**
 	 * Method to get canvas command instance
 	 * 
@@ -27,6 +29,7 @@ public class CanvasCommandFactory {
 	 * @return CanvasCommand
 	 */
 	public static CanvasCommand getCanvasCommandInstance(String cmdStr) {
+		logger.debug("Started --> command : " + cmdStr);
 		CanvasCommand canvasCommand = null;
 		if (cmdStr.startsWith(CREATE_COMMAND_START_CHAR)) {
 			canvasCommand = getCreateCommand(cmdStr);
@@ -40,6 +43,7 @@ public class CanvasCommandFactory {
 			throw new RuntimeException("Invalid command");
 		}
 
+		logger.debug("<-- Finished");
 		return canvasCommand;
 
 	}
@@ -51,6 +55,7 @@ public class CanvasCommandFactory {
 	 * @return CanvasDrawRectangleCommand
 	 */
 	private static CanvasDrawRectangleCommand getRectangleCommand(String cmdStr) {
+		logger.debug("Started --> command : " + cmdStr);
 		CanvasDrawRectangleCommand canvasDrawRectangleCommand = null;
 		Pattern p = Pattern.compile(RECT_CMD_REG_EXP_STR);
 		Matcher m = p.matcher(cmdStr);
@@ -70,7 +75,7 @@ public class CanvasCommandFactory {
 			throw new RuntimeException(
 					"Invalid command: please provide command in specified format e.g.  R x1 y1 x2 y2");
 		}
-
+		logger.debug("<-- Finished");
 		return canvasDrawRectangleCommand;
 	}
 
@@ -81,6 +86,7 @@ public class CanvasCommandFactory {
 	 * @return CanvasDrawLineCommand
 	 */
 	private static CanvasDrawLineCommand getDrawLineCommand(String cmdStr) {
+		logger.debug("Started --> command : " + cmdStr);
 		CanvasDrawLineCommand canvasDrawLineCommand = null;
 		Pattern p = Pattern.compile(LINE_CMD_REG_EXP_STR);
 		Matcher m = p.matcher(cmdStr);
@@ -101,7 +107,7 @@ public class CanvasCommandFactory {
 			throw new RuntimeException(
 					"Invalid command: please provide command in specified format e.g.  L x1 y1 x2 y2");
 		}
-
+		logger.debug("<-- Finished");
 		return canvasDrawLineCommand;
 
 	}
@@ -114,6 +120,7 @@ public class CanvasCommandFactory {
 	 */
 
 	private static CanvasCreateCommand getCreateCommand(String cmdStr) {
+		logger.debug("Started --> command : " + cmdStr);
 		CanvasCreateCommand canvasCreateCommand = null;
 		Pattern p = Pattern.compile(CREATE_CMD_REG_EXP_STR);
 		Matcher m = p.matcher(cmdStr);
@@ -136,7 +143,7 @@ public class CanvasCommandFactory {
 		} else {
 			throw new RuntimeException("Invalid command: please provide command in specified format e.g.  C x1 y1");
 		}
-
+		logger.debug("<-- Finished");
 		return canvasCreateCommand;
 
 	}

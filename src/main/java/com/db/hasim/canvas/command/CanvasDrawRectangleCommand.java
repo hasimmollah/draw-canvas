@@ -1,5 +1,9 @@
 package com.db.hasim.canvas.command;
 
+import java.util.Arrays;
+
+import org.apache.log4j.Logger;
+
 import com.db.hasim.canvas.CommonUtil;
 
 /**
@@ -8,6 +12,7 @@ import com.db.hasim.canvas.CommonUtil;
  *
  */
 public class CanvasDrawRectangleCommand extends CanvasCommand {
+	static final Logger logger = Logger.getLogger(CanvasCreateCommand.class);
 	private int x1;
 	private int x2;
 	private int y1;
@@ -22,7 +27,7 @@ public class CanvasDrawRectangleCommand extends CanvasCommand {
 
 	@Override
 	public char[][] executeCommand(char[][] grid) {
-
+		logger.debug("Started --> Grid " + Arrays.deepToString(grid));
 		
 		if (grid == null) {
 			throw new RuntimeException("No active grid. Please create grid using the CREATE (C) command");
@@ -41,7 +46,7 @@ public class CanvasDrawRectangleCommand extends CanvasCommand {
 		grid = CommonUtil.drawLine(x1, y2, x2, y2, grid);
 		grid = CommonUtil.drawLine(x2, y2, x2, y1, grid);
 		grid = CommonUtil.drawLine(x2, y1, x1, y1, grid);
-
+		logger.debug("<--Finished");
 		return grid;
 	}
 
